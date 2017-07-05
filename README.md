@@ -1,7 +1,6 @@
-# iOSSudoku
 
 
-Charlin出框架的目标：简单、易用、实用、高度封装、绝对解耦！
+    Charlin出框架的目标：简单、易用、实用、高度封装、绝对解耦！
 
 <br /><br />
 
@@ -11,14 +10,14 @@ CoreLock（关注信息公告牌）
 ===============
 高仿支付宝解锁！<br />
 
-注：本框架是高仿支付宝，并集成了所有功能，并非一个简单的解锁界面展示。个人制作用时1周多，打造解锁终结者框架。
+    注：本框架是高仿支付宝，并集成了所有功能，并非一个简单的解锁界面展示。个人制作用时1周多，打造解锁终结者框架。
 
 
 
 <br /><br />
 示例截图
 ===============
-![image](core.gif)<br />
+![image](/core.gif)<br />
 <br /><br />
 
 
@@ -54,75 +53,74 @@ Charlin想说：
 <br /><br />
 
 #### 使用示例
+    
+    /*
+     *  设置密码
+     */
+    - (IBAction)setPwd:(id)sender {
+        
+        
+        BOOL hasPwd = [CLLockVC hasPwd];
+        hasPwd = NO;
+        if(hasPwd){
+            
+            NSLog(@"已经设置过密码了，你可以验证或者修改密码");
+        }else{
+            
+            [CLLockVC showSettingLockVCInVC:self successBlock:^(CLLockVC *lockVC, NSString *pwd) {
+                
+                NSLog(@"密码设置成功");
+                [lockVC dismiss:1.0f];
+            }];
+        }
+    }
 
-/*
-*  设置密码
-*/
-- (IBAction)setPwd:(id)sender {
-
-
-BOOL hasPwd = [CLLockVC hasPwd];
-hasPwd = NO;
-if(hasPwd){
-
-NSLog(@"已经设置过密码了，你可以验证或者修改密码");
-}else{
-
-[CLLockVC showSettingLockVCInVC:self successBlock:^(CLLockVC *lockVC, NSString *pwd) {
-
-NSLog(@"密码设置成功");
-[lockVC dismiss:1.0f];
-}];
-}
-}
-
-/*
-*  验证密码
-*/
-- (IBAction)verifyPwd:(id)sender {
-
-BOOL hasPwd = [CLLockVC hasPwd];
-
-if(!hasPwd){
-
-NSLog(@"你还没有设置密码，请先设置密码");
-}else {
-
-[CLLockVC showVerifyLockVCInVC:self forgetPwdBlock:^{
-NSLog(@"忘记密码");
-} successBlock:^(CLLockVC *lockVC, NSString *pwd) {
-NSLog(@"密码正确");
-[lockVC dismiss:1.0f];
-}];
-}
-}
-
-
-/*
-*  修改密码
-*/
-- (IBAction)modifyPwd:(id)sender {
-
-BOOL hasPwd = [CLLockVC hasPwd];
-
-if(!hasPwd){
-
-NSLog(@"你还没有设置密码，请先设置密码");
-
-}else {
-
-[CLLockVC showModifyLockVCInVC:self successBlock:^(CLLockVC *lockVC, NSString *pwd) {
-
-[lockVC dismiss:.5f];
-}];
-}
-
-}
+    /*
+     *  验证密码
+     */
+    - (IBAction)verifyPwd:(id)sender {
+        
+        BOOL hasPwd = [CLLockVC hasPwd];
+        
+        if(!hasPwd){
+            
+            NSLog(@"你还没有设置密码，请先设置密码");
+        }else {
+            
+            [CLLockVC showVerifyLockVCInVC:self forgetPwdBlock:^{
+                NSLog(@"忘记密码");
+            } successBlock:^(CLLockVC *lockVC, NSString *pwd) {
+                NSLog(@"密码正确");
+                [lockVC dismiss:1.0f];
+            }];
+        }
+    }
 
 
+    /*
+     *  修改密码
+     */
+    - (IBAction)modifyPwd:(id)sender {
+        
+        BOOL hasPwd = [CLLockVC hasPwd];
+        
+        if(!hasPwd){
+            
+            NSLog(@"你还没有设置密码，请先设置密码");
+            
+        }else {
+            
+            [CLLockVC showModifyLockVCInVC:self successBlock:^(CLLockVC *lockVC, NSString *pwd) {
+                
+                [lockVC dismiss:.5f];
+            }];
+        }
 
-<br /><br />
+    }
 
 
+  
+  <br /><br />
 
+  
 
